@@ -1,0 +1,35 @@
+spring:
+  application:
+    name:video-service
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  info:
+    env:
+      enabled: true
+info:
+  app:
+    name: "video-service"
+    description:  "This is video service"
+    version: "1.0"
+
+resilience4j:
+  retry:
+    instances:
+      courseServiceRetry:
+        maxAttempts: 3
+        waitDuration: 2s
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000 # 5 seconds
+        readTimeout: 5000 # 5 seconds
